@@ -1,0 +1,33 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="Send Money" />
+  
+  <ScrollView>
+    <StackLayout class="p-4">
+      <Label text="Recipient Details" class="text-xl font-bold mb-4" />
+      
+      <!-- Recipient Input -->
+      <TextField hint="Recipient ID or Email" text="{{ recipientId }}" class="input mb-4" />
+      
+      <!-- Amount Input -->
+      <GridLayout columns="*, auto" class="mb-4">
+        <TextField col="0" hint="Amount" text="{{ amount }}" keyboardType="number" class="input" />
+        <DropDown col="1" items="{{ currencies }}" selectedIndex="{{ selectedCurrencyIndex }}" class="ml-2" />
+      </GridLayout>
+
+      <!-- Exchange Rate Info -->
+      <Label text="{{ exchangeRateInfo }}" class="text-gray-500 mb-4" textWrap="true" />
+      
+      <!-- Fees -->
+      <Label text="{{ feeInfo }}" class="text-gray-500 mb-4" textWrap="true" />
+      
+      <!-- Total -->
+      <Label text="{{ totalInfo }}" class="font-bold mb-4" textWrap="true" />
+      
+      <!-- Send Button -->
+      <Button text="Send Money" tap="{{ onSendMoney }}" class="btn btn-primary" isEnabled="{{ !isProcessing }}" />
+      
+      <!-- Error Message -->
+      <Label text="{{ errorMessage }}" class="text-red-500 text-center mt-2" textWrap="true" visibility="{{ errorMessage ? 'visible' : 'collapsed' }}" />
+    </StackLayout>
+  </ScrollView>
+</Page>

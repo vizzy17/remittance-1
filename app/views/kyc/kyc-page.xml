@@ -1,0 +1,28 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="Verify Identity" />
+  
+  <ScrollView>
+    <StackLayout class="p-4">
+      <Label text="Identity Verification" class="text-xl font-bold mb-4" />
+      
+      <!-- Document Type Selection -->
+      <DropDown items="{{ documentTypes }}" selectedIndex="{{ selectedDocumentIndex }}" class="mb-4" />
+      
+      <!-- Image Upload Buttons -->
+      <Button text="Upload Front Side" tap="{{ onUploadFront }}" class="btn btn-outline mb-2" />
+      <Button text="Upload Back Side" tap="{{ onUploadBack }}" class="btn btn-outline mb-2" />
+      <Button text="Take Selfie" tap="{{ onTakeSelfie }}" class="btn btn-outline mb-4" />
+      
+      <!-- Preview Images -->
+      <Image src="{{ frontImage }}" class="mb-2" visibility="{{ frontImage ? 'visible' : 'collapsed' }}" />
+      <Image src="{{ backImage }}" class="mb-2" visibility="{{ backImage ? 'visible' : 'collapsed' }}" />
+      <Image src="{{ selfieImage }}" class="mb-4" visibility="{{ selfieImage ? 'visible' : 'collapsed' }}" />
+      
+      <!-- Submit Button -->
+      <Button text="Submit Documents" tap="{{ onSubmit }}" class="btn btn-primary" isEnabled="{{ canSubmit }}" />
+      
+      <!-- Status Message -->
+      <Label text="{{ statusMessage }}" class="text-center mt-2" textWrap="true" />
+    </StackLayout>
+  </ScrollView>
+</Page>

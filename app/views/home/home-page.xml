@@ -1,0 +1,44 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="RemitEase" />
+  
+  <GridLayout rows="auto, *">
+    <!-- Welcome Section -->
+    <StackLayout row="0" class="p-4 bg-blue-500">
+      <Label text="Welcome to RemitEase" class="text-2xl text-white font-bold text-center" />
+      <Label text="Send money globally with ease" class="text-lg text-white text-center" />
+    </StackLayout>
+
+    <!-- Main Content -->
+    <ScrollView row="1">
+      <StackLayout class="p-4">
+        <!-- Quick Actions -->
+        <GridLayout columns="*, *" rows="auto" class="mb-4">
+          <Button text="Send Money" tap="{{ onSendMoney }}" class="btn btn-primary m-1" col="0" />
+          <Button text="Add Funds" tap="{{ onAddFunds }}" class="btn btn-secondary m-1" col="1" />
+        </GridLayout>
+
+        <!-- Balance Card -->
+        <StackLayout class="bg-white p-4 rounded-lg shadow-sm mb-4">
+          <Label text="Available Balance" class="text-gray-500" />
+          <Label text="{{ formattedBalance }}" class="text-2xl font-bold" />
+          <Label text="{{ currency }}" class="text-gray-500" />
+        </StackLayout>
+
+        <!-- Recent Transactions -->
+        <Label text="Recent Transactions" class="text-xl font-bold mb-2" />
+        <ListView items="{{ recentTransactions }}" class="list-group" height="300">
+          <ListView.itemTemplate>
+            <GridLayout columns="auto, *, auto" class="list-group-item p-2">
+              <Label col="0" text="{{ type === 'send' ? '↑' : '↓' }}" class="text-2xl" />
+              <StackLayout col="1" class="ml-2">
+                <Label text="{{ recipientId }}" class="font-semibold" />
+                <Label text="{{ new Date(createdAt).toLocaleDateString() }}" class="text-gray-500" />
+              </StackLayout>
+              <Label col="2" text="{{ amount }}" class="text-right" />
+            </GridLayout>
+          </ListView.itemTemplate>
+        </ListView>
+      </StackLayout>
+    </ScrollView>
+  </GridLayout>
+</Page>
